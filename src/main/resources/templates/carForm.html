@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать новый автомобиль</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Создать новый автомобиль</h1>
+    <form action="/cars" method="post">
+        <div class="form-group">
+            <label for="make">Производитель:</label>
+            <input type="text" id="make" name="make" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="model">Модель:</label>
+            <input type="text" id="model" name="model" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Год выпуска:</label>
+            <input type="number" id="year" name="year" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+    <a class="btn btn-secondary mt-3" href="/cars">Назад к списку</a>
+</div>
+</body>
+</html>
