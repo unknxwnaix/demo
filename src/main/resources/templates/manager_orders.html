@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Заказы менеджера</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Магазин одежды</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/manager/orders">Все заказы</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/manager/products">Управление товарами</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h1>Все заказы</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Номер заказа</th>
+      <th>Пользователь</th>
+      <th>Дата заказа</th>
+      <th>Статус</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.id}"></td>
+      <td th:text="${order.username}"></td>
+      <td th:text="${order.orderDate}"></td>
+      <td>
+        <form action="/manager/orders/updateStatus" method="post" style="display: flex;">
+          <input type="hidden" name="orderId" th:value="${order.id}" />
+          <select name="status" class="form-control" style="width: auto; margin-right: 10px;">
+            <option th:selected="${order.status == 'Pending'}" value="Pending">Pending</option>
+            <option th:selected="${order.status == 'Shipped'}" value="Shipped">Shipped</option>
+            <option th:selected="${order.status == 'Delivered'}" value="Delivered">Delivered</option>
+            <option th:selected="${order.status == 'Issued'}" value="Issued">Issued</option>
+            <option th:selected="${order.status == 'Cancelled'}" value="Cancelled">Cancelled</option>
+          </select>
+          <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Корзина</title>
+  <style>
+    .cart-item {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-item img {
+      max-width: 150px;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .quantity-controls button {
+      margin: 0 5px;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Магазин одежды</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/cart">Корзина</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/orders">Ваши заказы</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Войти в другой аккаунт</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h1>Корзина</h1>
+  <div class="cart-items">
+    <div class="row">
+      <div class="col-md-12" th:each="item, iterStat : ${cartItems}">
+        <div class="cart-item">
+          <img class="card-img-top" th:src="${products[iterStat.index].imageUrl}" alt="Товар" />
+          <div class="cart-item-details">
+            <h5 class="card-title" th:text="${products[iterStat.index].name}">Название товара</h5>
+            <p class="card-text">Размер: <span th:text="${sizes[iterStat.index].sizeValue}"></span></p>
+            <div class="quantity-controls">
+              <form action="/cart/update" method="post" class="d-flex align-items-center">
+                <input type="hidden" name="itemId" th:value="${item.id}" />
+                <input type="hidden" name="quantity" th:value="${item.quantity - 1}" />
+                <button type="submit" class="btn btn-secondary btn-sm" th:disabled="${item.quantity == 1}">-</button>
+              </form>
+              <span class="quantity" th:text="${item.quantity}">1</span>
+              <form action="/cart/update" method="post" class="d-flex align-items-center">
+                <input type="hidden" name="itemId" th:value="${item.id}" />
+                <input type="hidden" name="quantity" th:value="${item.quantity + 1}" />
+                <button type="submit" class="btn btn-secondary btn-sm">+</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <form action="/order" method="post" class="cart-total">
+    <button class="btn btn-success">Сделать заказ</button>
+  </form>
+</div>
+</body>
+</html>

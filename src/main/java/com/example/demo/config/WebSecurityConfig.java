@@ -22,13 +22,14 @@ public class WebSecurityConfig {
     @Autowired
     private DataSource dataSource;
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").hasAuthority("ADMIN")
+                        .requestMatchers("/manager/**").hasAuthority("MANAGER")
                         .requestMatchers("/login", "/registration").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

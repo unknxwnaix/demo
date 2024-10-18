@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
-import com.example.demo.model.UserRole;
 import com.example.demo.model.roleEnum;
-import com.example.demo.repositories.UserRepository;
-import com.example.demo.repositories.UserRoleRepository;
+import com.example.demo.model.roleEnum;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +17,6 @@ public class RegistrationController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private UserRoleRepository userRoleRepository;
 
     @GetMapping("/registration")
     public String regView() {

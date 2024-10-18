@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Управление товарами</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Магазин одежды</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/manager/orders">Все заказы</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/manager/products">Управление товарами</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h1>Управление товарами</h1>
+  <form action="/manager/products/add" method="post" class="mb-4">
+    <h4>Добавить новый товар</h4>
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Название товара" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="description" placeholder="Описание" required>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" name="price" placeholder="Цена" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="imageUrl" placeholder="URL изображения" required>
+    </div>
+    <div class="form-group">
+      <label for="brandId">Бренд</label>
+      <select class="form-control" name="brandId" required>
+        <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="typeId">Тип</label>
+      <select class="form-control" name="typeId" required>
+        <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sizeId">Размер</label>
+      <select class="form-control" name="sizeId" required>
+        <option th:each="size : ${sizes}" th:value="${size.id}" th:text="${size.sizeValue}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить товар</button>
+  </form>
+
+  <h4>Существующие товары</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Название</th>
+      <th>Цена</th>
+      <th>Бренд</th>
+      <th>Тип</th>
+      <th>Размер</th>
+      <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+      <td th:text="${product.id}"></td>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.price}"></td>
+      <td th:text="${product.brand.name}"></td>
+      <td th:text="${product.type.name}"></td>
+      <td th:text="${product.size.sizeValue}"></td>
+      <td>
+        <form action="/manager/products/delete" method="post">
+          <input type="hidden" name="productId" th:value="${product.id}" />
+          <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
