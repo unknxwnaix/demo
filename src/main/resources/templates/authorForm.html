@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Создание нового автора</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    .container {
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Создание нового автора</h1>
+  <form action="/authors" method="post"> <!-- Измените путь, если необходимо -->
+    <div class="form-group">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" required class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/authors" class="btn btn-secondary">Назад к списку</a> <!-- Измените путь, если необходимо -->
+  </div>
+</div>
+
+</body>
+</html>

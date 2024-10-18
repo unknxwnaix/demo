@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список людей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .container {
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Список людей</h1>
+
+    <form action="/persons/search" method="get" class="form-inline mb-4 justify-content-end">
+        <input type="text" name="keyword" class="form-control mr-2" placeholder="Поиск по имени">
+        <button type="submit" class="btn btn-primary">Искать</button>
+    </form>
+
+    <div class="text-right mb-3">
+        <a href="/persons/new" class="btn btn-success">Создать нового человека</a>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Рост</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${persons}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
+            <td th:text="${person.height}"></td>
+            <td class="d-flex justify-content-around">
+                <a th:href="@{/persons/edit/{id}(id=${person.id})}" class="btn btn-sm btn-warning">Редактировать</a>
+                <form th:action="@{/persons/{id}(id=${person.id})}" method="post" class="d-inline-block ml-2">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+                </form>
+                <a th:href="@{/persons/{id}(id=${person.id})}" class="btn btn-sm btn-info ml-2">Просмотр деталей</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">На главную</a>
+    </div>
+</div>
+
+</body>
+</html>

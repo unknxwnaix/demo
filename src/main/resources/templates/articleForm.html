@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Создание новой статьи</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    .container {
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Создание новой статьи</h1>
+  <form action="/articles" method="post">
+    <div class="form-group">
+      <label for="title">Название:</label>
+      <input type="text" id="title" name="title" required class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="author">Автор:</label>
+      <select id="author" name="author.id" class="form-control" required>
+        <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Издатель:</label>
+      <select id="publisher" name="publisher.id" class="form-control" required>
+        <option th:each="publisher : ${publishers}" th:value="${publisher.id}" th:text="${publisher.name}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="library">Библиотека:</label>
+      <select id="library" name="library.id" class="form-control" required>
+        <option th:each="library : ${libraries}" th:value="${library.id}" th:text="${library.name}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tags">Теги:</label>
+      <select id="tags" name="tags" class="form-control" multiple>
+        <option th:each="tag : ${tags}" th:value="${tag.id}" th:text="${tag.name}"></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/articles" class="btn btn-secondary">Назад к списку</a>
+  </div>
+</div>
+
+</body>
+</html>

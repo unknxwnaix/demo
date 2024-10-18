@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование статьи</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    .container {
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Редактирование статьи</h1>
+  <form th:action="@{/articles/{id}(id=${article.id})}" method="post">
+    <div class="form-group">
+      <label for="title">Название:</label>
+      <input type="text" id="title" name="title" th:value="${article.title}" required class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="author">Автор:</label>
+      <select id="author" name="author.id" class="form-control" required>
+        <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}" th:selected="${author.id == article.author.id}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Издатель:</label>
+      <select id="publisher" name="publisher.id" class="form-control" required>
+        <option th:each="pub : ${publishers}" th:value="${pub.id}" th:text="${pub.name}" th:selected="${pub.id == article.publisher.id}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="library">Библиотека:</label>
+      <select id="library" name="library.id" class="form-control" required>
+        <option th:each="lib : ${libraries}" th:value="${lib.id}" th:text="${lib.name}" th:selected="${lib.id == article.library.id}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tags">Теги:</label>
+      <select id="tags" name="tags" class="form-control" multiple>ч
+        <option th:each="tag : ${tags}" th:value="${tag.id}" th:text="${tag.name}"></option>
+      </select>
+      <small class="form-text text-muted">Удерживайте Ctrl, чтобы выбрать несколько тегов.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/articles" class="btn btn-secondary">Назад к списку статей</a>
+  </div>
+</div>
+
+</body>
+</html>

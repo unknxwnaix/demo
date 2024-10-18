@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список автомобилей</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    .container {
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Список автомобилей</h1>
+
+  <!-- Форма поиска -->
+  <form action="/cars/search" method="get" class="form-inline mb-4 justify-content-end">
+    <input type="text" name="keyword" class="form-control mr-2" placeholder="Поиск по производителю">
+    <button type="submit" class="btn btn-primary">Искать</button>
+  </form>
+
+  <div class="text-right mb-3">
+    <a href="/cars/new" class="btn btn-success">Создать новый автомобиль</a>
+  </div>
+
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Производитель</th>
+      <th>Модель</th>
+      <th>Год выпуска</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+      <td th:text="${car.id}"></td>
+      <td th:text="${car.make}"></td>
+      <td th:text="${car.model}"></td>
+      <td th:text="${car.year}"></td>
+      <td class="d-flex justify-content-around">
+        <a th:href="@{/cars/edit/{id}(id=${car.id})}" class="btn btn-sm btn-warning">Редактировать</a>
+        <form th:method="post" th:action="@{/cars/{id}(id=${car.id})}" class="d-inline-block ml-2">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Удалить" class="btn btn-sm btn-danger">
+        </form>
+        <a th:href="@{/cars/{id}(id=${car.id})}" class="btn btn-sm btn-info ml-2">Просмотр деталей</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center mt-4">
+    <a href="/" class="btn btn-primary">На главную</a>
+  </div>
+</div>
+
+</body>
+</html>
