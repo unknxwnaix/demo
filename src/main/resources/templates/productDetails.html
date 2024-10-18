@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Детали продукта</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Детали продукта</h1>
+  <p><strong>ID:</strong> <span th:text="${product.id}"></span></p>
+  <p><strong>Название:</strong> <span th:text="${product.name}"></span></p>
+  <p><strong>Цена:</strong> <span th:text="${product.price}"></span></p>
+  <p><strong>Количество:</strong> <span th:text="${product.quantity}"></span></p>
+  <a class="btn btn-secondary" th:href="@{/products}">Назад к списку</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Детали студента</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Детали студента</h1>
+  <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+  <p><strong>Имя:</strong> <span th:text="${student.name}"></span></p>
+  <p><strong>Специальность:</strong> <span th:text="${student.major}"></span></p>
+  <p><strong>Средний балл:</strong> <span th:text="${student.gpa}"></span></p>
+  <a class="btn btn-secondary" th:href="@{/students}">Назад к списку</a>
+</div>
+</body>
+</html>

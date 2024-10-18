@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привет, спринг!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+        }
+        .container {
+            border-radius: 10px;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #343a40;
+        }
+        .nav-links {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Привет, спринг!</h1>
+
+    <div class="text-center">
+        <form method="get" action="/calc" class="d-inline-block">
+            <button type="submit" class="btn btn-primary">Калькулятор</button>
+        </form>
+        <form method="get" action="/conv" class="d-inline-block ml-2">
+            <button type="submit" class="btn btn-primary">Конвертер валют</button>
+        </form>
+    </div>
+
+    <form method="post" action="/home" class="mt-4">
+        <div class="form-group">
+            <input type="text" name="NamePrint" class="form-control" placeholder="Введите имя">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Отправить</button>
+    </form>
+
+    <h1 class="mt-4" th:text="${name}"></h1>
+
+    <h2 class="mt-4">Навигация</h2>
+    <ul class="nav flex-column nav-links">
+        <li class="nav-item"><a class="nav-link" href="/persons">Persons</a></li>
+        <li class="nav-item"><a class="nav-link" href="/books">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="/cars">Cars</a></li>
+        <li class="nav-item"><a class="nav-link" href="/products">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+    </ul>
+</div>
+</body>
+</html>
