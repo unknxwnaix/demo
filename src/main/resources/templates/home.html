@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Привет, спринг!</h1>
+
+<form method="get" action="/calc">
+    <input type="submit" value="Калькулятор">
+</form>
+
+<form method="get" action="/conv">
+    <input type="submit" value="Конвертер валют">
+</form>
+
+<form method="post" action="/home">
+    <input type="input" name="NamePrint">
+    <input type="submit" value="Отправить">
+</form>
+
+<h1 th:text="${name}"></h1>
+
+<h2>Navigation</h2>
+<ul>
+    <li><a href="/persons">Persons</a></li>
+    <li><a href="/books">Books</a></li>
+</ul>
+</body>
+</html>
