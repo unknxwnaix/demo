@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Изменить студента</h1>
+<form th:action="@{/students/{id}(id=${student.id})}" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" th:value="${student.name}" required>
+
+  <label for="major">Major:</label>
+  <input type="text" id="major" name="major" th:value="${student.major}" required>
+
+  <label for="gpa">GPA:</label>
+  <input type="number" id="gpa" name="gpa" step="0.01" th:value="${student.gpa}" required>
+
+  <button type="submit">Изменить</button>
+</form>
+<a href="/students">Назад к списку</a>
+</body>
+</html>

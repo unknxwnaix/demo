@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Продукты</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Действия</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+            <form th:method="post" th:action="@{/products/{id}(id=${product.id})}">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete" class="btn-delete">
+            </form>
+            <a th:href="@{/products/{id}(id=${product.id})}">View Details</a>
+        </td>
+    </tr>
+</table>
+<br>
+<a href="/products/new">Создать продукт</a>
+<a href="/"><h2>Назад</h2></a>
+</body>
+</html>

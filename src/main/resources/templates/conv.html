@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <h1>Конвертер Валют</h1>
+
+    <form method="post" action="/conv">
+        <label for="Money">Введите сумму:</label>
+        <input type="number" step="any" id="Money" name="money" required>
+
+        <label for="FirstValue">Укажите входную валюту:</label>
+        <select id="FirstValue" name="fromCurrency" required>
+            <option value="USD">Доллар ($)</option>
+            <option value="GBP">Фунт (£)</option>
+            <option value="PHP">Песо (₱)</option>
+            <option value="CNY">Юань (¥)</option>
+            <option value="EUR">Евро (€)</option>
+        </select>
+
+        <label for="SecondValue">Укажите выходную валюту:</label>
+        <select id="SecondValue" name="toCurrency" required>
+            <option value="USD">Доллар ($)</option>
+            <option value="GBP">Фунт (£)</option>
+            <option value="PHP">Песо (₱)</option>
+            <option value="CNY">Юань (¥)</option>
+            <option value="EUR">Евро (€)</option>
+        </select>
+
+        <input type="submit" value="Конвертировать">
+    </form>
+    <h2 th:text="${result}"></h2>
+</body>
+</html>

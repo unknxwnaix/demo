@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student List</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Студенты</h1>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Специальность</th>
+    <th>Средний балл</th>
+    <th>Действия</th>
+  </tr>
+  <tr th:each="student : ${students}">
+    <td th:text="${student.id}"></td>
+    <td th:text="${student.name}"></td>
+    <td th:text="${student.major}"></td>
+    <td th:text="${student.gpa}"></td>
+    <td>
+      <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a>
+      <form th:method="post" th:action="@{/students/{id}(id=${student.id})}">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete" class="btn-delete">
+      </form>
+      <a th:href="@{/students/{id}(id=${student.id})}">View Details</a>
+    </td>
+  </tr>
+</table>
+<br>
+<a href="/students/new">Создать студента</a>
+<a href="/"><h2>Назад</h2></a>
+</body>
+</html>

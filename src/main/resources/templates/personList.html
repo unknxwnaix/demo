@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Person List</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Возраст</th>
+        <th>Рост</th>
+        <th>Действия</th>
+    </tr>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.age}"></td>
+        <td th:text="${person.height}"></td>
+        <td>
+            <a th:href="@{/persons/edit/{id}(id=${person.id})}">Edit</a>
+            <form th:action="@{/persons/{id}(id=${person.id})}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Delete</button>
+            </form>
+            <a th:href="@{/persons/{id}(id=${person.id})}">View Details</a>
+        </td>
+    </tr>
+</table>
+<br>
+<a href="/persons/new">Создать</a>
+<a href="/"><h2>На главную</h2></a>
+</body>
+</html>
