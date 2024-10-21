@@ -34,11 +34,9 @@ public class Article {
     )
     private List<Tag> tags;
 
-    // Конструктор по умолчанию
     public Article() {
     }
 
-    // Конструктор с параметрами
     public Article(String title, Library library, Author author, Publisher publisher) {
         this.title = title;
         this.library = library;
@@ -46,7 +44,6 @@ public class Article {
         this.publisher = publisher;
     }
 
-    // Геттеры и сеттеры
     public long getId() {
         return id;
     }

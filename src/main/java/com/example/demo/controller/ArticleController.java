@@ -35,7 +35,6 @@ public class ArticleController {
         this.tagRepository = tagRepository;
     }
 
-    // Отображение всех статей
     @GetMapping
     public String listArticles(Model model) {
         List<Article> articles = (List<Article>) articleRepository.findAll();
@@ -69,7 +68,6 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    // Форма редактирования статьи
     @GetMapping("/edit/{id}")
     public String editArticleForm(@PathVariable long id, Model model) {
         Optional<Article> article = articleRepository.findById(id);
@@ -84,7 +82,6 @@ public class ArticleController {
         return "articleEditForm";
     }
 
-    // Обновление статьи
     @PostMapping("/{id}")
     public String updateArticle(@PathVariable long id, @ModelAttribute Article article) {
         if (!articleRepository.existsById(id)) {
@@ -95,7 +92,6 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    // Удаление статьи
     @DeleteMapping("/{id}")
     public String deleteArticle(@PathVariable long id) {
         if (articleRepository.existsById(id)) {
@@ -104,7 +100,6 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    // Просмотр деталей статьи
     @GetMapping("/{id}")
     public String viewArticleDetails(@PathVariable long id, Model model) {
         Optional<Article> article = articleRepository.findById(id);
